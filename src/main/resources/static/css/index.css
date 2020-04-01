@@ -6,9 +6,20 @@
  *********************************************/
 .fd-top {
     display: flex;
-    justify-content: center;
     align-items: center;
     height: 200px;
+    font-size: 30px;
+    margin-left: 8px;
+    font-family: Georgia;
+}
+
+.fd-favicon {
+    width: 80px;
+}
+
+.fd-text {
+    float: left;
+    width: 100%;
 }
 
 .fd-bottom {
@@ -27,10 +38,8 @@
 }
 
 .fd-center {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 180px;
-    font-weight: bold;
+    display: block;
+    text-align: center;
+    font-size: 25px;
     font-family: Georgia;
 }
