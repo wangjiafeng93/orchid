@@ -62,6 +62,7 @@ public class TestAspect {
         Method method = sign.getMethod();
         MyAnnotation annotation = method.getAnnotation(MyAnnotation.class);
         System.out.println("before切点之前：" + annotation.value());
+        System.out.println("cegfs");
     }
 
     //@After 在切点后,return前执行,
