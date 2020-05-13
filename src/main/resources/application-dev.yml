@@ -7,6 +7,4 @@ spring:
     username: sa
     password: ENCRYPT#g3J0wPwVx24eVe/lEupktA==
     driver-class-name: com.thunisoft.ArteryBase.Driver
-artery:
-  login:
-    enabled: true
+
