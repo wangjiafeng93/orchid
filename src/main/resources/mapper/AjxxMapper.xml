@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.thunisoft.orchid.mapper.AjxxMapper">
+
+   <!--查询收藏列表-->
+    <select id="selectAjxx" resultType="Map" parameterType="Integer" >
+        select * from (
+        select rownum rn,m.* from
+        (select t.TYSAH,
+        t.BMSAH,
+        t.YSAY_AYMc,
+        '' JAAY,
+        t.AJLB_MC,
+        t.BJRQ,
+        t.cbdw_mc qy,
+        (select count(*) from tyyw_gs_xyrqk xyr where t.bmsah=xyr.bmsah and xyr.sfsc='N' ) xyr,
+        (select case when (db.sjcljg_dm in ('0201101201000','0201101201001','0201101201002'))then '批捕'
+        when (db.sjcljg_dm in ('0201101201000','0201101201001','0201101201002')) then '不批捕'  end sfpb
+        from tyyw_zj_scdb db where db.bmsah=t.bmsah and db.sfsc='N')SFPB,
+        decode( rz.salb_bm,'0006','是','0008','否',null) qs,
+        decode( rz.salb_bm,'0008','是','0006','否',null) bqs,
+        (select nvl2(es.ssrq,'否','是') from tyyw_gs_esks es where t.bmsah=es.bmsah and es.sfsc='N') SFKS
+        from tyyw_gg_ajjbxx t,(select salb_bm,bmsah from YX_AG_SARZ rz where rz.ajlb_bm='0301' and rz.salb_bm in ('0006','0008') and rz.sfsc='N' )rz
+        where t.sfsc='N'
+        and t.bmsah = rz.bmsah(+)
+        and t.ajlb_bm in ('0301','0302','0303','0304','0305','0306','0307','0308','0309','0310','0311','0312','0313','0314','0315','0316','0317','0318','0319','0320','0321','0322','0323','0324','0325','0326','0327','0329','0201')
+        and t.fql &gt;2016
+        order by t.bmsah)m ) where rn &gt;#{offset} and rn &lt;#{size}
+        </select>
+    <select id="selectAjxxCount" resultType="Integer">
+select count(*)
+  from tyyw_gg_ajjbxx t,(select salb_bm,bmsah from YX_AG_SARZ rz where rz.ajlb_bm='0301' and rz.salb_bm in ('0006','0008') and rz.sfsc='N' )rz
+  where t.sfsc='N'
+  and t.bmsah = rz.bmsah(+)
+  and t.fql &gt;2016
+  and t.ajlb_bm in ('0301','0302','0303','0304','0305','0306','0307','0308','0309','0310','0311','0312','0313','0314','0315','0316','0317','0318','0319','0320','0321','0322','0323','0324','0325','0326','0327','0329','0201')
+    </select>
+    <select id="selectXyrxxCount" resultType="Integer">
+select count(*)
+  from tyyw_gs_xyrqk qk, tyyw_gg_xyrjbxx jb
+ where qk.bmsah = jb.bmsah(+)
+   and qk.sfsc = 'N'
+   and exists
+    (select 1 from tyyw_gg_ajjbxx t
+  where t.sfsc='N'
+  and t.fql &gt;2016
+  and t.ajlb_bm in ('0301','0302','0303','0304','0305','0306','0307','0308','0309','0310','0311','0312','0313','0314','0315','0316','0317','0318','0319','0320','0321','0322','0323','0324','0325','0326','0327','0329','0201'))
+    </select>
+    <select id="selectXyrxx" resultType="Map" parameterType="Integer">
+        select jb.TYSAH,
+        jb.BMSAH,
+        jb.XM,
+        jb.CSRQ,
+        qk.YS_AYMC,
+        qk.SJAY_AYMC,
+        (select AJLB_MC from tyyw_gg_ajjbxx aj where aj.bmsah=qk.bmsah and aj.sfsc='N')AJLB_MC,
+        qk.SJRQ,
+        qk.cbdw_mc qy,
+        (select case when (db.sjcljg_dm in ('0201101201000','0201101201001','0201101201002'))then '批捕'
+        when (db.sjcljg_dm in ('0201101201000','0201101201001','0201101201002')) then '不批捕'  end sfpb
+        from tyyw_zj_scdb db where db.bmsah=qk.bmsah and db.sfsc='N')sfpb,
+        case when qk.sjclqk_dm='0322110101000' then '是' when qk.sjclqk_mc like '%不起诉%'then '否' end QS,
+        case when qk.sjclqk_mc like '%不起诉%' then sjclqk_mc else null end BQSLX,
+        (select nvl2(es.ssrq,'否','是') from tyyw_gs_esks es where qk.bmsah=es.bmsah and es.sfsc='N') sfks
+        from tyyw_gs_xyrqk qk, tyyw_gg_xyrjbxx jb
+        where qk.bmsah = jb.bmsah(+)
+        and qk.sfsc = 'N'
+        and exists
+        (select 1 from(
+        select bmsah from (
+        select rownum rn,m.bmsah from
+        (select t.bmsah
+        from tyyw_gg_ajjbxx t,(select salb_bm,bmsah from YX_AG_SARZ rz where rz.ajlb_bm='0301' and rz.salb_bm in ('0006','0008') and rz.sfsc='N' )rz
+        where t.sfsc='N'
+        and t.fql &gt; 2016
+        and t.bmsah = rz.bmsah(+)
+        and t.ajlb_bm in ('0301','0302','0303','0304','0305','0306','0307','0308','0309','0310','0311','0312','0313','0314','0315','0316','0317','0318','0319','0320','0321','0322','0323','0324','0325','0326','0327','0329','0201')
+        order by t.bmsah)m )where rn &gt;#{offset} and rn &lt;#{size}) s where s.bmsah=qk.bmsah)
+    </select>
+</mapper>

@@ -1,7 +1,11 @@
 package com.thunisoft.orchid.controller;
 
+import java.util.List;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,6 +14,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.alibaba.fastjson.JSONObject;
 
 import com.thunisoft.artery.data.annotation.ExceptionTips;
+import com.thunisoft.orchid.mapper.AjxxMapper;
+import com.thunisoft.orchid.service.TyywAjxxService;
 
 /**
  * Index Controller 首页面Controller
@@ -20,6 +26,21 @@ import com.thunisoft.artery.data.annotation.ExceptionTips;
 @Controller
 @RequestMapping("index")
 public class IndexController {
+
+    @Autowired
+    public TyywAjxxService tyywAjxxService;
+
+    @GetMapping("/getAjxx")
+    public Boolean getAjxx(HttpServletRequest request) {
+        tyywAjxxService.exportTyywAjxx();
+        return true;
+    }
+
+    @GetMapping("/getXyrxx")
+    public Boolean getXyrxx(HttpServletRequest request) {
+        tyywAjxxService.exportTyywXyrxx();
+        return true;
+    }
     /**
      * html入口
      * 注意：如直接访问到contextPath，默认走的SpringBoot的转发，不会走此方法了

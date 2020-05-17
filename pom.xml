@@ -48,7 +48,11 @@
 			<groupId>com.thunisoft.arterybase</groupId>
 			<artifactId>ArteryBase</artifactId>
 		</dependency>
-
+		<dependency>
+			<groupId>com.oracle</groupId>
+			<artifactId>ojdbc6</artifactId>
+			<version>11.2.0.1.0</version>
+		</dependency>
 		<!-- log4jdbc -->
 		<dependency>
 			<groupId>com.thunisoft</groupId>

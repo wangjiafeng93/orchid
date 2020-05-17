@@ -2,9 +2,9 @@ spring:
   thymeleaf:
     cache: false
   datasource:
-    name: dataSource
-    url: jdbc:ArteryBase://172.16.193.220:5432/db_orchid
-    username: sa
-    password: ENCRYPT#g3J0wPwVx24eVe/lEupktA==
-    driver-class-name: com.thunisoft.ArteryBase.Driver
+    db-fwzx:
+      jdbc-url: jdbc:oracle:thin:@172.16.192.139:1521/BJ.NET
+      username: tyyw
+      password: tyyw
+      driver-class-name: oracle.jdbc.OracleDriver
 

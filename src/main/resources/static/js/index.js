@@ -11,5 +11,25 @@ var vm = new Vue({
     data: function () {
         return {}
     },
-    methods: {}
+    methods: {
+        /**
+         *
+         * @param event click事件
+         */
+        getAjxx: function (event) {
+
+            Artery.ajax.get('/index/getAjxx', {}).then(function (result) {
+                console.log(result);
+            });
+        },
+        /**
+         *
+         * @param event click事件
+         */
+        getXyrxx : function (event) {
+            Artery.ajax.get('/index/getXyrxx', {}).then(function (result) {
+                console.log(result);
+            });
+        }
+    }
 })
