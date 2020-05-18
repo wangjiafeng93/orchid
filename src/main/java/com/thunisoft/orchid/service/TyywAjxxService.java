@@ -32,7 +32,10 @@ public class TyywAjxxService {
     @Value("${onceSize}")
     Integer onceSize;
 
-    static String HH = "\r\n";
+    //换行符
+    static String HH = System.getProperty("line.separator");
+    //文件分割符
+    static String FGF = System.getProperty("file.separator");
 
     public void exportTyywAjxx() {
         System.out.println("==========案件抽取开始=============");
@@ -73,7 +76,7 @@ public class TyywAjxxService {
          * 写出txt数据
          */
         private void readAjxxFile (List < Map < String, Object >> tyywDataList,int offset,int size){
-            String exportPathFull = exportPath + "\\"+offset+"-"+size;
+            String exportPathFull = exportPath + FGF +offset+"-"+size;
             File filePath = new File(exportPathFull);
             if (!filePath.exists()) {
                 filePath.mkdir();
@@ -90,12 +93,12 @@ public class TyywAjxxService {
                 map.put("BPB", "是");
             }
             String ajText = map.get("TYSAH") + "-" + map.get("BMSAH");
-            String filePathFull = exportPathFull + "\\"+ajText ;
+            String filePathFull = exportPathFull + FGF+ajText ;
             filePath = new File(filePathFull);
             if (!filePath.exists()) {
                 filePath.mkdir();
             }
-            try (FileOutputStream out = new FileOutputStream(filePathFull + "\\"+ajText+".txt"); PrintStream ps = new PrintStream(out);) {
+            try (FileOutputStream out = new FileOutputStream(filePathFull + FGF+ajText+".txt"); PrintStream ps = new PrintStream(out);) {
                 String text = map.get("TYSAH") + HH +
                         map.get("BMSAH") + HH +
                         map.get("YSAY_AYMC") + HH +
@@ -117,7 +120,7 @@ public class TyywAjxxService {
         }
 
         void readXyrxxFile (List < Map < String, Object >> tyywDataList,int offset,int size){
-            String exportPathFull = exportPath + "\\"+offset+"-"+size;
+            String exportPathFull = exportPath + FGF+offset+"-"+size;
             File filePath = new File(exportPathFull);
             if (!filePath.exists()) {
                 filePath.mkdir();
@@ -135,13 +138,13 @@ public class TyywAjxxService {
             }
 
             String ajText = map.get("TYSAH") + "-" + map.get("BMSAH");
-            String filePathFull = exportPathFull + "\\" + ajText;
+            String filePathFull = exportPathFull + FGF + ajText;
             filePath = new File(filePathFull);
             if (!filePath.exists()) {
                 filePath.mkdir();
             }
             try (FileOutputStream out = new FileOutputStream(
-                    filePathFull + "\\" + map.get("XM") + ".txt"); PrintStream ps = new PrintStream(out);) {
+                    filePathFull + FGF + map.get("XM") + ".txt"); PrintStream ps = new PrintStream(out);) {
                 String text = map.get("TYSAH") + HH +
                         map.get("BMSAH") + HH +
                         map.get("XM") + HH +

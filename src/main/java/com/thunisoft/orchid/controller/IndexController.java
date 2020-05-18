@@ -31,15 +31,15 @@ public class IndexController {
     public TyywAjxxService tyywAjxxService;
 
     @GetMapping("/getAjxx")
-    public Boolean getAjxx(HttpServletRequest request) {
+    public String getAjxx(HttpServletRequest request) {
         tyywAjxxService.exportTyywAjxx();
-        return true;
+        return "index";
     }
 
     @GetMapping("/getXyrxx")
-    public Boolean getXyrxx(HttpServletRequest request) {
+    public String getXyrxx(HttpServletRequest request) {
         tyywAjxxService.exportTyywXyrxx();
-        return true;
+        return "index";
     }
     /**
      * html入口
