@@ -11,5 +11,20 @@ var vm = new Vue({
     data: function () {
         return {}
     },
-    methods: {}
+    methods: {
+        /**
+         *
+         * @param event click事件
+         */
+        getOrchid: function (event) {
+            Artery.ajax.get('index/getOrchid', {
+                params: {
+                    bh: 1,
+                    name: 'zs'
+                }
+            }).then(function (result) {
+                console.log(result);
+            });
+        }
+    }
 })

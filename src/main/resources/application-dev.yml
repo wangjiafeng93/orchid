@@ -3,7 +3,7 @@ spring:
     cache: false
   datasource:
     name: dataSource
-    url: jdbc:ArteryBase://172.16.193.220:5432/db_orchid
+    url: jdbc:ArteryBase://172.16.34.123:5432/testwjf?currentSchema=public
     username: sa
     password: ENCRYPT#g3J0wPwVx24eVe/lEupktA==
     driver-class-name: com.thunisoft.ArteryBase.Driver

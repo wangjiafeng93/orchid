@@ -1,15 +1,19 @@
 package com.thunisoft.orchid.controller;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.alibaba.fastjson.JSONObject;
 
 import com.thunisoft.artery.data.annotation.ExceptionTips;
+import com.thunisoft.orchid.service.OrchidService;
 
 /**
  * Index Controller 首页面Controller
@@ -17,9 +21,13 @@ import com.thunisoft.artery.data.annotation.ExceptionTips;
  * @author huayu
  * @date 2020-03-30
  */
-@Controller
+@RestController
 @RequestMapping("index")
 public class IndexController {
+
+    @Resource
+    private OrchidService orchidService;
+
     /**
      * html入口
      * 注意：如直接访问到contextPath，默认走的SpringBoot的转发，不会走此方法了
@@ -32,6 +40,13 @@ public class IndexController {
         return "index";
     }
 
+    /**
+     * 点击事件
+     */
+    @GetMapping("/getOrchid")
+    public void getOrchid(@RequestParam("bh") String bh,@RequestParam("name") String name){
+        orchidService.getOrchid(bh,name);
+    }
     /**
      * 数据源
      *

@@ -1,11 +1,22 @@
 spring:
+  profiles:
+    active: dev
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
     time-zone: GMT+8 #日期序列化走北京时间
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        temp:
+          use_jdbc_metadata_defaults: false
+    open-in-view: true
+    show-sql: true
+
 server:
-  port: 10000
+  port: 10001
 #  servlet:
 #    context-path: /demo
 #    session:
@@ -18,3 +29,7 @@ server:
 #    min-spare-threads: 10
 #    max-connections: 10000
 #    accept-count: 100
+debug: false
+artery:
+  login:
+    enabled: false
