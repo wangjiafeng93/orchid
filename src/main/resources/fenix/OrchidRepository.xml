@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fenixs namespace="com.thunisoft.orchid.repository.OrchidRepository">
+    <fenix id="findMaxDateOrchid">
+        SELECT t.name FROM Orchid AS t
+        WHERE t.content LIKE '%继落梅%'
+    </fenix>
+</fenixs>
