@@ -33,7 +33,6 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter</artifactId>
 		</dependency>
-		<!-- spring data jpa 需要排除掉Artery的引包-->
 		<dependency>
 			<groupId>com.thunisoft.artery</groupId>
 			<artifactId>artery-code-starter</artifactId>
@@ -60,18 +59,12 @@
 			<groupId>com.thunisoft.arterybase</groupId>
 			<artifactId>ArteryBase</artifactId>
 		</dependency>
-		<!-- spring data jpa -->
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
-			<version>2.3.1.RELEASE</version>
 		</dependency>
-		<!-- Fenix -->
-		<dependency>
-			<groupId>com.blinkfox</groupId>
-			<artifactId>fenix-spring-boot-starter</artifactId>
-			<version>2.3.3</version>
-		</dependency>
+
 		<!-- log4jdbc -->
 		<dependency>
 			<groupId>com.thunisoft</groupId>
@@ -87,6 +80,12 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
+		</dependency>
+		<!--为了解决复杂动态 SQL (JPQL) 而生的 Spring Data JPA 扩展库-->
+		<dependency>
+			<groupId>com.blinkfox</groupId>
+			<artifactId>fenix-spring-boot-starter</artifactId>
+			<version>2.3.3</version>
 		</dependency>
 	</dependencies>
 	<dependencyManagement>
